@@ -95,9 +95,12 @@ const MyContactsScreen = ({navigation}) => {
         keyExtractor={item => item.id}
         
       />
+      <TouchableOpacity onPress={() => navigation.navigate('Add Contact')} style={styles.addButton}>
+        <Text style={styles.addButtonText}>+</Text>
+      </TouchableOpacity>
     </View>
-    
 
+    {/*Original list layout idea*/}
     <View style={styles.container}>
       <FlatList
         data={contacts}
@@ -111,9 +114,6 @@ const MyContactsScreen = ({navigation}) => {
           />
         )}
       />
-      <TouchableOpacity onPress={handleAddContact} style={styles.addButton}>
-        <Text style={styles.addButtonText}>+</Text>
-      </TouchableOpacity>
     </View>
     
     </>
@@ -123,7 +123,8 @@ const MyContactsScreen = ({navigation}) => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
+    backgroundColor: '#3f48cc',
   },
   addButton: {
     backgroundColor: '#333',
@@ -141,7 +142,7 @@ const styles = StyleSheet.create({
     fontSize: 24
   },
   item: {
-    backgroundColor: '#3653a1',
+    backgroundColor: 'black',
     padding: 20,
     marginVertical: 8,
     marginHorizontal: 16,

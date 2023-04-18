@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Alert, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, TextInput, Alert, StyleSheet, TouchableOpacity, Linking } from 'react-native';
 import Contacts from './Contacts';
 
-const ContactScreen = ({ route, navigation }) => {
+const ContactScreenTim = ({ route, navigation }) => {
   
   const DATA = [
     {
@@ -11,8 +11,8 @@ const ContactScreen = ({ route, navigation }) => {
       lName: 'Frantz',
       pNumber: '403 123 6969',
       eMail: 'tim@frantz.com',
-      linkedIn: '',
-      instagram: '',
+      linkedIn: 'https://www.linkedin.com/in/timothy-frantz-0b443b1/',
+      instagram: 'https://www.instagram.com/timothydfrantz/',
       pageLink: 'ContactT',
     },
   ];
@@ -63,6 +63,7 @@ const ContactScreen = ({ route, navigation }) => {
       <Text style={styles.header}>
         {fName} {lName}
       </Text>
+      <View style={styles.detailsContainerMain}>
       <View style={styles.detailsContainer}>
         <Text style={styles.label}>Phone Number:</Text>
         {isEditing ? (
@@ -87,29 +88,44 @@ const ContactScreen = ({ route, navigation }) => {
           <Text style={styles.text}>{eMail}</Text>
         )}
       </View>
-      <View style={styles.detailsContainer}>
-        <Text style={styles.label}>LinkedIn:</Text>
+      <>
         {isEditing ? (
+          <View style={styles.detailsContainer}>
+          <Text style={styles.label}>LinkedIn:</Text>
           <TextInput
             style={styles.textInput}
             value={linkedIn}
             onChangeText={setLinkedinLink}
           />
+          </View>
         ) : (
-          <Text style={styles.text}>{linkedIn}</Text>
+          <View style={styles.detailsContainerLinks}>
+          <Text style={styles.labelLinks}>LINKEDIN</Text>
+          <TouchableOpacity style={styles.buttonL} onPress={() => Linking.openURL(linkedIn)}>
+              <Text style={styles.buttonTextB}>in</Text>
+            </TouchableOpacity>
+          </View>
         )}
-      </View>
-      <View style={styles.detailsContainer}>
-        <Text style={styles.label}>Instagram:</Text>
+      </>
+      <>
         {isEditing ? (
+          <View style={styles.detailsContainer}>
+          <Text style={styles.label}>Instagram:</Text>
           <TextInput
             style={styles.textInput}
             value={instagram}
             onChangeText={setInstagramLink}
           />
+          </View>
         ) : (
-          <Text style={styles.text}>{instagram}</Text>
+          <View style={styles.detailsContainerLinks}>
+          <Text style={styles.labelLinks}>INSTAGRAM</Text>
+          <TouchableOpacity style={styles.buttonI} onPress={() => Linking.openURL(instagram)}>
+              <Text style={styles.buttonTextB}>[o]</Text>
+            </TouchableOpacity>
+          </View>
         )}
+      </>
       </View>
       <View style={styles.buttonsContainer}>
         {isEditing ? (
@@ -139,27 +155,61 @@ const ContactScreen = ({ route, navigation }) => {
           const styles = StyleSheet.create({
           container: {
           flex: 1,
-          padding: 20
+          padding: 20,
+          backgroundColor: '#3f48cc'
           },
           header: {
-          fontSize: 24,
+          fontSize: 36,
           fontWeight: 'bold',
-          marginBottom: 20
+          marginBottom: 20,
+          textAlign: 'center',
+          color: 'white'
           },
           detailsContainer: {
           flexDirection: 'row',
-          marginBottom: 20
+          marginBottom: 15,
+          marginTop: 10,
+          backgroundColor: 'white',
+          padding: 5,
+          paddingTop: 10,
+          paddingBottom: 10,
+          borderRadius: 7,
           },
+          detailsContainerLinks: {
+            flexDirection: 'column',
+            marginBottom: 15,
+            marginTop: 10,
+            padding: 5,
+            paddingTop: 10,
+            paddingBottom: 10,
+            borderRadius: 7,
+            justifyContent: 'center',
+            alignItems: 'center',
+            },
+          detailsContainerMain: {
+            backgroundColor: 'black',
+            borderRadius: 16,
+            padding: 10,
+            },
           label: {
           fontWeight: 'bold',
-          width: 120
+          width: 120,
           },
+          labelLinks: {
+            fontWeight: 'bold',
+            color: 'white',
+            width: 120,
+            textAlign: 'center',
+            },
           text: {
           fontSize: 20
           },
           textInput: {
           fontSize: 20,
-          flex: 1
+          flex: 1,
+          borderWidth: 1,
+          borderRadius: 7,
+          padding: 5,
           },
           buttonsContainer: {
           flexDirection: 'row',
@@ -167,13 +217,41 @@ const ContactScreen = ({ route, navigation }) => {
           marginTop: 20
           },
           button: {
-          backgroundColor: 'lightgray',
           padding: 10,
-          borderRadius: 5
+          marginLeft: 10,
+          borderRadius: 7,
+          backgroundColor: 'black',
           },
           buttonText: {
-          fontSize: 20
-          }
+          fontSize: 20,
+          color: 'white',
+          fontWeight: 'bold',
+          textAlign: 'center',
+          },
+          buttonL: {
+            padding: 10,
+            marginTop: 15,
+            borderRadius: 1000,
+            backgroundColor: 'blue',
+            width: 100,
+            height: 100,
+            justifyContent: 'center',
+          },
+          buttonI: {
+            padding: 10,
+            marginTop: 15,
+            borderRadius: 1000,
+            backgroundColor: '#ff0077',
+            width: 100,
+            height: 100,
+            justifyContent: 'center',
+          },
+          buttonTextB: {
+            fontSize: 45,
+            color: 'white',
+            fontWeight: 'bold',
+            textAlign: 'center',
+            },
           });
           
-          export default ContactScreen;
+          export default ContactScreenTim;
